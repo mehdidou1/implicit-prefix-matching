@@ -13,6 +13,15 @@ CoGlobalEntry >> completionMatchText [
 ]
 
 { #category : '*Implicit-Prefix-Matching' }
+CoGlobalEntry class >> contents: aString node: aNode implicitPrefix: aPrefix [
+
+	^ self new
+		contents: aString node: aNode;
+		implicitPrefix: aPrefix;
+		yourself
+]
+
+{ #category : '*Implicit-Prefix-Matching' }
 CoGlobalEntry >> implicitPrefix [
 
 	^ self propertyAt: #implicitPrefix ifAbsent: [ Error signal: 'No implicitPrefix' ]

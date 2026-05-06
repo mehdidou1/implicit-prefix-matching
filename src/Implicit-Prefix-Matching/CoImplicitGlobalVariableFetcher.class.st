@@ -28,7 +28,6 @@ CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [
                     contents: cls name node: astNode implicitPrefix: prefix)
                     fetcherName: self class name;
                     yourself) ] ].
-
 	super entriesDo: aBlock ]
 ]
 
