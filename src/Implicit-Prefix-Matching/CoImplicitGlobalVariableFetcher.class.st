@@ -1,3 +1,6 @@
+"
+I am a fetcher that looks for candidates beginning with a prefix inferred from the context. I fetch candidates from the global namespace as a fallback.
+"
 Class {
 	#name : 'CoImplicitGlobalVariableFetcher',
 	#superclass : 'CoGlobalVariableFetcher',
@@ -65,21 +68,28 @@ CoImplicitGlobalVariableFetcher >> inferPrefix [
 
 { #category : 'as yet unclassified' }
 CoImplicitGlobalVariableFetcher >> inferPrefixFromClass: aClassName [ 
-    | seenLowercase |
-    seenLowercase := false.
+	"I extract the prefix from a given name of class 
+	If the class name start with more than one upper case character, i extract till the (n-1)th uppercase character eg. HTMLParser -> HTML
+	if not, I extract till the (index of the second uppercase character -1) eg. SpAbstractPreseenter -> Sp"
+    | size index |
 
-    1 to: aClassName size do: [ :index |
-        | char |
-        char := aClassName at: index.
+    size := aClassName size.
+    size = 0 ifTrue: [ ^ '' ].
 
-        char isLowercase ifTrue: [
-            seenLowercase := true
-        ].
-
-        (char isUppercase and: [ seenLowercase and: [ index > 1 ] ]) ifTrue: [
-            ^ aClassName copyFrom: 1 to: index - 1
+   
+    (size > 1 and: [ (aClassName at: 2) isUppercase ]) ifTrue: [
+        index := 1.
+        [ index <= size and: [ (aClassName at: index) isUppercase ] ]
+            whileTrue: [ index := index + 1 ].
+        
+		  index > size ifTrue: [ ^ '' ].
+        ^ aClassName copyFrom: 1 to: index - 2
+    ].
+	2 to: size do: [ :i |
+        (aClassName at: i) isUppercase ifTrue: [
+            ^ aClassName copyFrom: 1 to: i - 1
         ].
     ].
 
-    ^ ''
+	^ ''
 ]
