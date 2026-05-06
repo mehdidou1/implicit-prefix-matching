@@ -1,3 +1,6 @@
+"
+I represent an entry that begins with entries.
+"
 Class {
 	#name : 'NECPrefixExpandableGlobalEntry',
 	#superclass : 'CoGlobalEntry',
