@@ -20,10 +20,9 @@ NECPrefixExpandableGlobalEntry class >> contents: aString node: aNode implicitPr
 { #category : 'matching' }
 NECPrefixExpandableGlobalEntry >> completionMatchText [
 
-	self halt.
-	(NECPreferences expandPrefixes and: [
+	(
 			 implicitPrefix isNotNil and: [
-				 implicitPrefix notEmpty and: [ self contents size > implicitPrefix size and: [ self contents beginsWith: implicitPrefix ] ] ] ])
+				 implicitPrefix notEmpty and: [ self contents size > implicitPrefix size and: [ self contents beginsWith: implicitPrefix ] ] ])
 		ifTrue: [ ^ self contents allButFirst: implicitPrefix size ].
 
 	^ super completionMatchText
