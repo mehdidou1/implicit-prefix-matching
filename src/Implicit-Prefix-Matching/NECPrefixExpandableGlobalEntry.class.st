@@ -1,3 +1,6 @@
+"
+I represent an entry that begins with entries.
+"
 Class {
 	#name : 'NECPrefixExpandableGlobalEntry',
 	#superclass : 'CoGlobalEntry',
@@ -8,7 +11,7 @@ Class {
 	#package : 'Implicit-Prefix-Matching'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'instance creation' }
 NECPrefixExpandableGlobalEntry class >> contents: aString node: aNode implicitPrefix: aPrefix [
 
 	^ self new
@@ -20,10 +23,9 @@ NECPrefixExpandableGlobalEntry class >> contents: aString node: aNode implicitPr
 { #category : 'matching' }
 NECPrefixExpandableGlobalEntry >> completionMatchText [
 
-	self halt.
-	(NECPreferences expandPrefixes and: [
+	(
 			 implicitPrefix isNotNil and: [
-				 implicitPrefix notEmpty and: [ self contents size > implicitPrefix size and: [ self contents beginsWith: implicitPrefix ] ] ] ])
+				 implicitPrefix notEmpty and: [ self contents size > implicitPrefix size and: [ self contents beginsWith: implicitPrefix ] ] ])
 		ifTrue: [ ^ self contents allButFirst: implicitPrefix size ].
 
 	^ super completionMatchText

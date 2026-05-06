@@ -1,8 +1,8 @@
 Extension { #name : 'CoEntry' }
 
 { #category : '*Implicit-Prefix-Matching' }
-CoEntry >> completionMatchText [
+CoEntry >> completionMatchText [ 
 
-	self halt.
 	^ self contents
+
 ]
