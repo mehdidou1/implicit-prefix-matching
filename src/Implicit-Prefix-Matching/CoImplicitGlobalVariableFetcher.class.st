@@ -17,7 +17,7 @@ CoImplicitGlobalVariableFetcher >> completionClass: aClass [
 CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [ 
     | prefix |
     prefix := self inferPrefix.
-    completionClass ifNil: [ ^ self ].
+	completionClass ifNotNil: [ 
     completionClass package definedClasses do: [ :cls |
         (cls name beginsWith: prefix , filter completionString)
             ifTrue: [
@@ -25,6 +25,8 @@ CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [
                     contents: cls name node: astNode implicitPrefix: prefix)
                     fetcherName: self class name;
                     yourself) ] ].
+
+	super entriesDo: aBlock ]
 ]
 
 { #category : 'as yet unclassified' }
