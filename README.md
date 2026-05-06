@@ -9,6 +9,9 @@ Implicit Prefix Matching is a code completion extension for Pharo that allows us
 
 ---
 
+
+# Example:
+
 <img width="925" height="654" alt="ImplicitPrefixExpansion" src="https://github.com/user-attachments/assets/50942e94-0872-4b16-a84b-20db2f91aab8" />
 
 
