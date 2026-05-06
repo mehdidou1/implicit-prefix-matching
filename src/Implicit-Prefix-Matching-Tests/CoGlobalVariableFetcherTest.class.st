@@ -46,3 +46,15 @@ CoGlobalVariableFetcherTest >> testInferPrefixFromClassWhenSingleUpperCaseFollow
 CoGlobalVariableFetcherTest >> testInferPrefixFromClassWithMultipleUpperCaseCharacters [
 	self assert: (fetcher inferPrefixFromClass: 'OSNullBackendWindow') equals: 'OS'
 ]
+
+{ #category : 'running' }
+CoGlobalVariableFetcherTest >> testInferPrefixWhenCompletionClassIsNil [
+	fetcher completionClass: nil. 
+	self assert: (fetcher inferPrefix ) equals: ''
+]
+
+{ #category : 'running' }
+CoGlobalVariableFetcherTest >> testInferPrefixWhithDominantPrefix [ 
+	fetcher completionClass: SpPresenter .
+	self assert: (fetcher inferPrefix ) equals: 'Sp'
+]
