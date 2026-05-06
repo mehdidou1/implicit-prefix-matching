@@ -24,7 +24,7 @@ CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [
     completionClass package definedClasses do: [ :cls |
         (cls name beginsWith: prefix , filter completionString)
             ifTrue: [
-                aBlock value: ((NECPrefixExpandableGlobalEntry
+                aBlock value: ((CoGlobalEntry
                     contents: cls name node: astNode implicitPrefix: prefix)
                     fetcherName: self class name;
                     yourself) ] ].
