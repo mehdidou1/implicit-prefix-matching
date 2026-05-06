@@ -4,9 +4,10 @@ Extension { #name : 'CoGlobalEntry' }
 CoGlobalEntry >> completionMatchText [
     self propertyAt: #implicitPrefix
         ifPresent: [:prefix |
-            (prefix isNotEmpty
+            (	prefix isNotNil and: [ 
+					prefix isNotEmpty
                 and: [ self contents size > prefix size
-                and: [ self contents beginsWith: prefix ] ])
+                and: [ self contents beginsWith: prefix ] ]])
                 ifTrue: [ ^ self contents allButFirst: prefix size ]
                 ifFalse: [ ^ super completionMatchText ] ]
         ifAbsent: [ ^'' ]
@@ -24,7 +25,7 @@ CoGlobalEntry class >> contents: aString node: aNode implicitPrefix: aPrefix [
 { #category : '*Implicit-Prefix-Matching' }
 CoGlobalEntry >> implicitPrefix [
 
-	^ self propertyAt: #implicitPrefix ifAbsent: [ Error signal: 'No implicitPrefix' ]
+	^ self propertyAt: #implicitPrefix ifAbsent: [ ^'' ]
 ]
 
 { #category : '*Implicit-Prefix-Matching' }
