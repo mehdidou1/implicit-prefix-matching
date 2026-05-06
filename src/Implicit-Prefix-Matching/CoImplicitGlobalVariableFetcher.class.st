@@ -11,12 +11,12 @@ Class {
 	#package : 'Implicit-Prefix-Matching'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'enumerating' }
 CoImplicitGlobalVariableFetcher >> completionClass: aClass [
 	completionClass := aClass
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'enumerating' }
 CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [ 
     | prefix |
     prefix := self inferPrefix.
@@ -32,7 +32,7 @@ CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [
 	super entriesDo: aBlock ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'inference' }
 CoImplicitGlobalVariableFetcher >> inferPrefix [ 
     | prefixes baseName packages |
 
@@ -66,7 +66,7 @@ CoImplicitGlobalVariableFetcher >> inferPrefix [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'inference' }
 CoImplicitGlobalVariableFetcher >> inferPrefixFromClass: aClassName [ 
 	"I extract the prefix from a given name of class 
 	If the class name start with more than one upper case character, i extract till the (n-1)th uppercase character eg. HTMLParser -> HTML

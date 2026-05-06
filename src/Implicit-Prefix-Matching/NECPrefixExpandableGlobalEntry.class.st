@@ -11,7 +11,7 @@ Class {
 	#package : 'Implicit-Prefix-Matching'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'instance creation' }
 NECPrefixExpandableGlobalEntry class >> contents: aString node: aNode implicitPrefix: aPrefix [
 
 	^ self new
