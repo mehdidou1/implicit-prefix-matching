@@ -1,12 +1,20 @@
-Extension { #name : 'CoGlobalVariableFetcher' }
+Class {
+	#name : 'CoImplicitGlobalVariableFetcher',
+	#superclass : 'CoGlobalVariableFetcher',
+	#instVars : [
+		'completionClass'
+	],
+	#category : 'Implicit-Prefix-Matching',
+	#package : 'Implicit-Prefix-Matching'
+}
 
-{ #category : '*Implicit-Prefix-Matching' }
-CoGlobalVariableFetcher >> completionClass: aClass [
+{ #category : 'as yet unclassified' }
+CoImplicitGlobalVariableFetcher >> completionClass: aClass [
 	completionClass := aClass
 ]
 
-{ #category : '*Implicit-Prefix-Matching' }
-CoGlobalVariableFetcher >> entriesDo: aBlock [ 
+{ #category : 'as yet unclassified' }
+CoImplicitGlobalVariableFetcher >> entriesDo: aBlock [ 
     | prefix |
     prefix := self inferPrefix.
     completionClass ifNil: [ ^ self ].
@@ -17,18 +25,10 @@ CoGlobalVariableFetcher >> entriesDo: aBlock [
                     contents: cls name node: astNode implicitPrefix: prefix)
                     fetcherName: self class name;
                     yourself) ] ].
-    self systemNavigation
-        allGlobalNamesStartingWith: filter completionString
-        do: [ :e |
-            aBlock value: ((CoGlobalEntry contents: e node: astNode)
-                fetcherName: self class name;
-                yourself) ]
-        caseSensitive: NECPreferences caseSensitive
-
 ]
 
-{ #category : '*Implicit-Prefix-Matching' }
-CoGlobalVariableFetcher >> inferPrefix [ 
+{ #category : 'as yet unclassified' }
+CoImplicitGlobalVariableFetcher >> inferPrefix [ 
     | prefixes baseName packages |
 
 	completionClass ifNil: [ ^'' ].
@@ -61,8 +61,8 @@ CoGlobalVariableFetcher >> inferPrefix [
 
 ]
 
-{ #category : '*Implicit-Prefix-Matching' }
-CoGlobalVariableFetcher >> inferPrefixFromClass: aClassName [ 
+{ #category : 'as yet unclassified' }
+CoImplicitGlobalVariableFetcher >> inferPrefixFromClass: aClassName [ 
     | seenLowercase |
     seenLowercase := false.
 
